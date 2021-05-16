@@ -15,6 +15,8 @@ set(PCSXR_VERSION_PATCH "94")
 add_definitions(-DPACKAGE_VERSION="${PCSXR_VERSION_MAJOR}.${PCSXR_VERSION_MINOR}.${PCSXR_VERSION_PATCH}")
 add_definitions(-DPACKAGE_NAME="PCSXr")
 add_definitions(-DPACKAGE_STRING="PCSXr ${PCSXR_VERSION_MAJOR}.${PCSXR_VERSION_MINOR}.${PCSXR_VERSION_PATCH}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
 
@@ -27,6 +29,7 @@ add_definitions(-DENABLE_NLS -DGETTEXT_PACKAGE="pcsxr")
 
 #WARNING! this is required for dynarec to work!
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fno-pie")
+
 if(CMAKE_CXX_COMPILER_ID STREQUAL GNU)
     CHECK_C_COMPILER_FLAG("-no-pie" NO_PIE_UPSTREAM)
     if(NO_PIE_UPSTREAM)
@@ -50,6 +53,3 @@ add_subdirectory(libpcsxcore)
 add_subdirectory(gui)
 add_subdirectory(plugins)
 add_subdirectory(doc)
-
-
-

@@ -10,12 +10,12 @@ if(NOT GLib_FOUND)
 endif(NOT GLib_FOUND)
 include_directories(${GLib_INCLUDE_DIRS})
 
-find_package(GTK3 3.14.0 REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
 if(NOT GTK3_FOUND)
     message(FATAL_ERROR "GTK3 library not found")
 endif(NOT GTK3_FOUND)
 include_directories(${GTK3_INCLUDE_DIRS})
-set(GTK_LIBRARIES ${GTK3_LIBRARY} ${GDK3_LIBRARY} ${GDKPixbuf_LIBRARY} ${Pango_LIBRARY} ${Cairo_LIBRARY} ${GObject_LIBRARY} ${GLib_LIBRARY} ${GIO_LIBRARY})
 
 find_package(Threads REQUIRED)
 find_package(ZLIB REQUIRED)
@@ -89,7 +89,7 @@ compile_gresources(RESOURCE_FILE
 add_custom_target(resource DEPENDS ${RESOURCE_FILE})
 add_executable(pcsxr ${SRCS} ${RESOURCE_FILE} )
 add_dependencies(pcsxr resource)
-target_link_libraries(pcsxr pcsxcore ${GTK_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${ZLIB_LIBRARIES} ${RT_LIB} ${DL_LIB} ${X11_XTest_LIB})
+target_link_libraries(pcsxr pcsxcore ${GTK3_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${ZLIB_LIBRARIES} ${RT_LIB} ${DL_LIB} ${X11_XTest_LIB})
 
 install(TARGETS pcsxr RUNTIME DESTINATION bin)
 install(FILES data/pcsxr.desktop DESTINATION share/applications)

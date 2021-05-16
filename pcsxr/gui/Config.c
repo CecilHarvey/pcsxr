@@ -24,6 +24,9 @@
 
 #include "Linux.h"
 
+char cfgfile[MAXPATHLEN];
+char cfgfile_basename[MAXPATHLEN];
+
 /* TODO escaping/unescaping would be nice, as would maxchars */
 static void GetValue(char *src, char *name, char *outvar) {
 	char *tmp;

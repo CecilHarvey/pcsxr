@@ -22,6 +22,21 @@ const unsigned char build    = 3;    // increase that with each version
 
 static char *libraryName      = N_("Socket Driver");
 
+struct timeval tm;
+int sock;
+char *PadSendData;
+char *PadRecvData;
+char PadSendSize;
+char PadRecvSize;
+char PadSize[2];
+int PadCount;
+int PadCountMax;
+int PadInit;
+int Ping;
+volatile int WaitCancel;
+fd_set rset;
+fd_set wset;
+
 unsigned long CALLBACK PSEgetLibType() {
 	return PSE_LT_NET;
 }

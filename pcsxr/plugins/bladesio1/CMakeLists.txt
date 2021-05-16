@@ -52,7 +52,6 @@ add_custom_target(bladesio1_resource DEPENDS ${RESOURCE_FILE})
 include_directories(${CMAKE_SOURCE_DIR}/libpcsxcore)
 add_library(BladeSio1 MODULE ${PLUGIN_SRCS})
 
-
 add_executable(cfgBladeSio1 ${GUI_SRCS} ${RESOURCE_FILE})
 add_dependencies(cfgBladeSio1 bladesio1_resource)
 target_link_libraries(cfgBladeSio1 ${GTK_LIBRARIES})

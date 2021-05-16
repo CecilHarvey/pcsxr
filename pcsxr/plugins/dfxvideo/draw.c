@@ -107,7 +107,7 @@ static __inline int GetResult2(DWORD A, DWORD B, DWORD C, DWORD D, DWORD E)
 }
 
 /* Convert RGB to YUV */
-__inline uint32_t rgb_to_yuv(uint8_t R, uint8_t G, uint8_t B) {
+static __inline uint32_t rgb_to_yuv(uint8_t R, uint8_t G, uint8_t B) {
     uint8_t Y = min(abs(R * 2104 + G * 4130 + B * 802 + 4096 + 131072) >> 13, 235);
     uint8_t U = min(abs(R * -1214 + G * -2384 + B * 3598 + 4096 + 1048576) >> 13, 240);
     uint8_t V = min(abs(R * 3598 + G * -3013 + B * -585 + 4096 + 1048576) >> 13, 240);
@@ -1594,7 +1594,7 @@ extern time_t tStart;
  * The aspect of the psx output mode is preserved.
  * Note: dest dx,dy,dw,dh are both input and output variables
  */
-__inline void MaintainAspect(uint32_t * dx, uint32_t * dy, uint32_t * dw, uint32_t * dh)
+static __inline void MaintainAspect(uint32_t * dx, uint32_t * dy, uint32_t * dw, uint32_t * dh)
 {
 
 	double ratio_x = ((double)*dw) / ((double)PSXDisplay.DisplayMode.x) ;
